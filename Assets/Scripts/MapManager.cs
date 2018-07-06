@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class MapManager : MonoBehaviour
 	private void Start ()
 	{
 		// Pass a ref and default the player Starting Pin
-		Character.Initialise(this, StartPin);
+		Character.Start(this, StartPin);
 	}
 
 
@@ -23,7 +24,7 @@ public class MapManager : MonoBehaviour
 	private void Update()
 	{
 		// Only check input when character is stopped
-		if (Character.IsMoving) return;
+		if (Character.GetComponent<Animator>().GetBool("IsMoving")) return;
 		
 		// First thing to do is try get the player input
 		CheckForInput();
@@ -53,11 +54,10 @@ public class MapManager : MonoBehaviour
 		}
 	}
 
-	
-	/// <summary>
-	/// Update the GUI text
-	/// </summary>
-	public void UpdateGui()
+    /// <summary>
+    /// Update the GUI text
+    /// </summary>
+    public void UpdateGui()
 	{
 		SelectedLevelText.text = string.Format("Current Level: {0}", Character.CurrentPin.SceneToLoad);
 	}

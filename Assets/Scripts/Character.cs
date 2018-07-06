@@ -3,15 +3,15 @@
 public class Character : MonoBehaviour
 {
     public float Speed = 3f;
-    public bool IsMoving { get; private set; }
 
     public Pin CurrentPin { get; private set; }
     private Pin _targetPin;
     private MapManager _mapManager;
 
 
-    public void Initialise(MapManager mapManager, Pin startPin)
+    public void Start(MapManager mapManager, Pin startPin)
     {
+        gameObject.GetComponent<Animator>().SetBool("IsMoving", false);
         _mapManager = mapManager;
         SetCurrentPin(startPin);
     }
@@ -76,7 +76,7 @@ public class Character : MonoBehaviour
     private void MoveToPin(Pin pin)
     {
         _targetPin = pin;
-        IsMoving = true;
+        gameObject.GetComponent<Animator>().SetBool("IsMoving", true);
     }
 
     
@@ -89,8 +89,8 @@ public class Character : MonoBehaviour
         CurrentPin = pin;
         _targetPin = null;
         transform.position = pin.transform.position;
-        IsMoving = false;
-        
+        gameObject.GetComponent<Animator>().SetBool("IsMoving", false);
+
         // Tell the map manager that
         // the current pin has changed
         _mapManager.UpdateGui();
