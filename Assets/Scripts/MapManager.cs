@@ -34,7 +34,7 @@ public class MapManager : MonoBehaviour
 	/// <summary>
 	/// Check if the player has pressed a button
 	/// </summary>
-	private void CheckForInput()
+	public void CheckForInput()
 	{
 		if (Input.GetKeyUp(KeyCode.UpArrow))
 		{
