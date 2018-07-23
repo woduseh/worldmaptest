@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour {
 
-    public Character Character;
+    public Waypoint Load;
     
     public void ChangeGameScene()
     {
-        string gameScene = Character.CurrentPin.SceneToLoad;
+        string gameScene = Load.SceneToLoad;
         SceneManager.LoadScene(gameScene);
     }
 }
